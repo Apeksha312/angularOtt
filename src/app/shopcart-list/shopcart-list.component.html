@@ -1,0 +1,36 @@
+
+<p>shopcart-list works!</p>
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        border: 1px solid #080808;
+        padding: 8px;
+    }
+    th {
+        background-color: #f2f2f2;
+        text-align: center;
+    }
+    img {
+        max-width: 100px;
+        height: auto;
+    }
+</style>
+    <table>
+        <!-- <h1 style="background-color: antiquewhite;text-align: center;"><i>Cart</i></h1> -->
+        <thead>
+            <tr>
+                <th>Plan Name</th>
+                <th>Price</th>
+            </tr>
+        </thead> 
+    <tbody>
+        <tr  *ngFor="let a of ot">
+            <td><p>{{a.ottName}}</p></td>
+            <td> <p>{{a.ottPrice}}</p></td>
+        </tr>
+    </tbody>
+    </table>
+    <p><b>Total:Rs {{total}}</b></p>

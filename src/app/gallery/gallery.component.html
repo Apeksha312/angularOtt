@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery Page</title>
+    <link rel="stylesheet" href="gallery.component.css">
+</head>
+<body>
+    <h1>Gallery</h1>
+    <div class="gallery" style="text-align: center;">
+        <div class="gallery-item" *ngFor="let item of galleryItems" (click)="showInfo(item)">
+            <img [src]="item.imgSrc" [alt]="item.alt">
+            <br>
+            <a [href]="item.link"><b>{{item.name}}</b></a>
+            <div [ngSwitch]="selectedItem === item ? item.name : ''">
+                <div *ngSwitchCase="'Amazon'">
+                    <p>{{item.infoLine1}}</p>
+                    <p>{{item.infoLine2}}</p>
+                </div>
+                <div *ngSwitchCase="'Netflix'">
+                    <p>{{item.infoLine1}}</p>
+                    <p>{{item.infoLine2}}</p>
+                </div>
+                <div *ngSwitchCase="'Disney'">
+                    <p>{{item.infoLine1}}</p>
+                    <p>{{item.infoLine2}}</p>
+                </div>
+                <div *ngSwitchCase="'Voot'">
+                    <p>{{item.infoLine1}}</p>
+                    <p>{{item.infoLine2}}</p>
+                </div>
+                <div *ngSwitchCase="'Crunchyroll'">
+                    <p>{{item.infoLine1}}</p>
+                    <p>{{item.infoLine2}}</p>
+                </div>
+                <div *ngSwitchDefault></div>
+            </div>
+        </div>
+    </div>
+    <button type="button" class="btn btn-success" (click)="onSignup()" style="position: fixed; bottom: 0%; right: 0%;">Shop here!!</button>
+</body>
+</html>
+
+

@@ -1,0 +1,103 @@
+<h3>Register here!!</h3>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #373838;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .contact-form {
+            background-color: #c2bdbde4;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(154, 149, 149, 0.1);
+            width: 300px;
+        }
+        .contact-form h2 {
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        .contact-form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .contact-form input[type="text"],
+        .contact-form input[type="password"],
+        .contact-form input[type="email"],
+        .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .contact-form textarea {
+            height: 50px;
+            resize: vertical;
+        }
+        .contact-form button {
+            background-color: #4c7caf;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .contact-form button:hover {
+            background-color: #46add8;
+        }
+    </style>
+</head>
+<body>
+    <div class="contact-form">
+        <h3><b>Registration</b></h3>
+        <form #RegiForm="ngForm" action="/submit_form" method="post" (ngSubmit)="OnSubmit(RegiForm)">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" placeholder="Name"[(ngModel)]="Username"ngmodel #username="ngModel" required minlength="4">
+            <div *ngIf="username.invalid && (username.dirty||username.touched)">
+                <div *ngIf="username.errors?.['required']">Username is required</div>
+                <div *ngIf="username.errors?.['minlength']">Username not less than 4</div>
+
+            </div>
+
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Password" ngmodel #password="ngModel" [(ngModel)]="Password"required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$" required minlength="5">
+            
+            <div *ngIf="password.invalid && (password.dirty||password.touched)">
+            <div *ngIf="password.errors?.['pattern']">Special characters needed</div>
+                <div *ngIf="password.errors?.['required']">Password is required</div>
+                <div *ngIf="password.errors?.['minlength']">Password not less than 5</div>
+            </div>
+
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Email" [(ngModel)]="Email" ngmodel #email="ngModel" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required>
+            <div *ngIf="email.invalid && (email.dirty||email.touched)">
+                <div *ngIf="email.errors?.['pattern']">Invalid email format</div>
+            </div>
+
+
+            <label for="address">Address</label>
+            <textarea id="address" name="address" placeholder="Address" [(ngModel)]="Address"required></textarea>
+
+            <button type="submit"  [disabled]="!isFormValid()" [attr.data-valid]="!isFormValid" (click)="OnSub()">Submit</button>
+        </form>
+    <!-- <a href="http://127.0.0.1:5500/q4.html" style="text-align: end;">for gallery</a> -->
+
+    </div>
+</body>
+</html>

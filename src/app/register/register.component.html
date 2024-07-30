@@ -1,0 +1,44 @@
+<h2>Login here!!</h2>
+<form (ngSubmit)="OnSubmit()">
+  <label for="username"><b>Username</b></label><br>
+  <div class="input-group flex-nowrap" style="height: 30px; width: 250px;">
+    <span class="input-group-text" id="addon-wrapping">@</span>
+    <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping" [(ngModel)]="Username" name="username"(ngModelChange)="updateImage()" required>
+  </div>
+  <br>
+  <label for="password"><b>Password</b></label><br>
+  <div class="input-group flex-nowrap" style="height: 30px; width: 250px;">
+    <span class="input-group-text" id="addon-wrapping">🔒</span>
+    <input type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="addon-wrapping" [(ngModel)]="Password" name="password" required>
+  </div>
+  <br>&nbsp;&nbsp;
+  <button type="submit" class="btn btn-success"  [disabled]="!isFormValid()" [attr.data-valid]="!isFormValid">Submit</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <button type="button"  class="btn btn-success" (click)="onSignup()">Sign Up </button>
+<br>
+<br>
+  <div >
+    <img [src]="imgUrl"  height= 200 width = 250 alt="Profile pic">
+  </div>
+</form>
+
+<div *ngIf="loginAttempts.length >0">
+  <table border="1">
+      <thead>
+          <tr>
+              <th>UserName</th>
+          <th>Password</th>
+          <th>Time</th>
+          </tr>
+         
+      </thead>
+      <tbody>
+          <tr *ngFor="let logd of loginAttempts" >
+             <td> {{logd.username}}</td>
+             <td>{{logd.password|ottPipe:3}}</td>
+          <td>{{logd.timestamp}}</td>
+          </tr>
+         
+      </tbody>
+  </table>
+ 
+  </div>
